@@ -25,10 +25,10 @@
 
 
     <!-- Hidden form. Form submits new item positions -->
-{#    <form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">#}
-{#        {% csrf_token %}#}
-{#        <input type="hidden" id="positionInput" name="position">#}
-{#    </form>#}
+    {#    <form style="display: none;" id="reorderForm" method="post" action="{% url 'task-reorder' %}">#}
+    {#        {% csrf_token %}#}
+    {#        <input type="hidden" id="positionInput" name="position">#}
+    {#    </form>#}
 
 
     <div id="tasklist" class="task-items-wrapper">
@@ -41,6 +41,8 @@
                         <div class="task-incomplete-icon"></div>
                         <a href="{% url 'task-update' task.id %}">{{ task }}</a> {% endif %}
                 </div>
+                <div class="task-priority">Priority: {{ task.priority }}</div>
+
                 <div class="task-controls">
                     <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
                     <span class="handle">&nbsp;&#10247;</span>

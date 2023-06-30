@@ -53,6 +53,15 @@ class TaskList(LoginRequiredMixin, ListView):
 
         context['search_input'] = search_input
 
+        # Sorting based on priority
+        priority_order = {
+            'High': 3,
+            'Medium': 2,
+            'Low': 1
+        }
+        sorted_tasks = sorted(context['tasks'], key=lambda task: priority_order[task.priority], reverse=True)
+        context['tasks'] = sorted_tasks
+
         return context
 
 
@@ -64,7 +73,7 @@ class TaskDetail(LoginRequiredMixin, DetailView):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['title', 'description', 'complete']
+    fields = ['title', 'description', 'complete', 'priority']
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
@@ -74,7 +83,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['title', 'description', 'complete']
+    fields = ['title', 'description', 'complete', 'priority']
     success_url = reverse_lazy('tasks')
 
 

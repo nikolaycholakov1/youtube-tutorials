@@ -8,6 +8,8 @@ class Task(models.Model):
         ('Medium', 'Medium'),
         ('High', 'High'),
     )
+    TITLE_MAX_LEN = 200
+    PRIORITY_MAX_LEN = 6
 
     user = models.ForeignKey(
         User,
@@ -17,7 +19,7 @@ class Task(models.Model):
     )
 
     title = models.CharField(
-        max_length=200,
+        max_length=TITLE_MAX_LEN,
     )
 
     description = models.TextField(
@@ -37,7 +39,7 @@ class Task(models.Model):
         null=False,
         blank=False,
         choices=PRIORITY_CHOICES,
-        max_length=6,
+        max_length=PRIORITY_MAX_LEN,
     )
 
     def __str__(self):
